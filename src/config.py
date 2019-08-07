@@ -6,7 +6,7 @@ max_proxy_pages = 14
 debug = True
 
 root_urls = [
-	"https://espn.com",
+	"https://simpli.fi",
 	]
 
 blacklist = [

@@ -171,8 +171,6 @@ def browse(urls):
                 depth = config.click_depth
         curr_url +=1
         print('\n')
-    if config.debug:
-        print("done...")
 
 data_meter = 0
 good_requests = 0
