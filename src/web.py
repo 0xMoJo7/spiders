@@ -127,11 +127,11 @@ def browse(urls):
                     proxy_count = 0
                     if config.debug:
                         print("fetching new proxies and ua's...")
+                random_link = random.randrange(0, link_count-1)
                 if config.debug:
                     print(f"URL: {curr_url} / {url_count} -- depth: {depth} / {config.click_depth}")
                     print(f"choosing random url from total: {link_count}")
                     print(f"we have made {proxy_count} requests with this proxy")
-                random_link = random.randrange(0, link_count-1)
                 try:
                     click_link = links[random_link]
                 except IndexError:
@@ -143,6 +143,8 @@ def browse(urls):
                 try:
                     session = requests.session()
                     sub_page = make_request(click_link, current_proxy, random_ua, session)
+                    links = get_links(sub_page)
+                    link_count = len(links)
                     proxy_count += 1
                     if sub_page:
                         check_link_count = len(get_links(sub_page))
@@ -156,12 +158,10 @@ def browse(urls):
                         if config.debug:
                             print(f"not enough links found... found {check_link_count}, going back up a level")
                         config.blacklist.append(click_link)
-                        del links[random_link]
                 except:
                     if config.debug:
                         print(f"exception on URL: {click_link}, removing from list and trying again")
                         config.blacklist.append(click_link)
-                        del links[random_link]
                         pass
                 depth += 1
             else:
@@ -170,6 +170,7 @@ def browse(urls):
                 config.blacklist.append(click_link)
                 depth = config.click_depth
         curr_url +=1
+        print('\n')
     if config.debug:
         print("done...")
 
