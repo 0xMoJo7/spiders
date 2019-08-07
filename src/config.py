@@ -31,6 +31,8 @@ blacklist = [
 	".svg",
 	".gif",
 	"zendesk",
-	"clickserve"
+	"clickserve",
+        "facebook",
+        "twitter"
 	]
 

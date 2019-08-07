@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 def get_proxy():
     ua = UserAgent()
     headers = {'user-agent': ua.random}
-    proxies_req = requests.get('https://www.sslproxies.org/', headers=headers)
+    proxies_req = requests.get('https://www.us-proxy.org/?ref=driverlayer.com/web', headers=headers)
     soup = BeautifulSoup(proxies_req.content, 'html.parser')
     proxies_table = soup.find(id='proxylisttable')
     proxies = []
